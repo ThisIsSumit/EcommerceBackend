@@ -1,6 +1,6 @@
 package org.example.ecommercebackend.controller;
 
-import org.example.ecommercebackend.model.Category;
+import org.example.ecommercebackend.entities.Category;
 import org.example.ecommercebackend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

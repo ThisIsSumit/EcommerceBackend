@@ -1,7 +1,6 @@
 package org.example.ecommercebackend.service;
 
-import org.example.ecommercebackend.model.Category;
-import org.springframework.stereotype.Service;
+import org.example.ecommercebackend.entities.Category;
 
 import java.util.List;
 
