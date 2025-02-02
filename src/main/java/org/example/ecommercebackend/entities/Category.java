@@ -1,15 +1,24 @@
-package org.example.ecommercebackend.model;
+package org.example.ecommercebackend.entities;
 
-import org.springframework.lang.NonNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity(name="categories")
 public class Category {
-    @NonNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
     private String categoryName;
 
     public Category(Long categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
+    }
+
+    public Category() {
+
     }
 
     public Long getCategoryId() {
