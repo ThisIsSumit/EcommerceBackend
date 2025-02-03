@@ -1,6 +1,7 @@
 package org.example.ecommercebackend.service;
 
 import org.example.ecommercebackend.entities.Category;
+import org.example.ecommercebackend.exceptions.ResourceNotFoundException;
 import org.example.ecommercebackend.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class CategoryServiceImpl  implements CategoryService{
 
       Category category = categoryRepository.
               findById(categoryId).
-              orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
+              orElseThrow(() -> new ResourceNotFoundException("Category","categoryId", categoryId));
       categoryRepository.delete(category);
 
 
@@ -45,7 +46,7 @@ public class CategoryServiceImpl  implements CategoryService{
     @Override
     public Category updateCategory(Category category, Long categoryId) {
         Optional<Category> savedCategoryOptional=categoryRepository.findById(categoryId);
-        Category savedCategory=savedCategoryOptional.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"category not found"));
+        Category savedCategory=savedCategoryOptional.orElseThrow(() -> new ResourceNotFoundException("Category","categoryId", categoryId));
 
         category.setCategoryName(savedCategory.getCategoryName());
 
