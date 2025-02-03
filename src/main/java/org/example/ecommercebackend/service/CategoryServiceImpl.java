@@ -1,6 +1,7 @@
 package org.example.ecommercebackend.service;
 
 import org.example.ecommercebackend.entities.Category;
+import org.example.ecommercebackend.exceptions.APIException;
 import org.example.ecommercebackend.exceptions.ResourceNotFoundException;
 import org.example.ecommercebackend.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,10 @@ public class CategoryServiceImpl  implements CategoryService{
 
     @Override
     public void createCategory(Category category) {
+        Category savedCategory = categoryRepository.findByCategoryName(category.getCategoryName());
+        if (savedCategory != null) {
+            throw new APIException("Category with name "+ category.getCategoryName() +" already exists");
+        }
         categoryRepository.save(category);
 
 
