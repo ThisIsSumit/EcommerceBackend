@@ -43,8 +43,8 @@ public class CategoryController {
 
     @DeleteMapping("/api/public/categories/{categoryId}")
     public  ResponseEntity<CategoryDTO> deleteCategory(@PathVariable Long categoryId) {
-           CategoryDTO categoryDTO= categoryService.deleteCategory(categoryId);
-            return  ResponseEntity.status(HttpStatus.OK).body(categoryDTO);
+           CategoryDTO deleteCategory= categoryService.deleteCategory(categoryId);
+            return  ResponseEntity.status(HttpStatus.OK).body(deleteCategory);
 
     }
 }
