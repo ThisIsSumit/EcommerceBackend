@@ -2,6 +2,7 @@ package org.example.ecommercebackend.controller;
 
 import jakarta.validation.Valid;
 import org.example.ecommercebackend.entities.Category;
+import org.example.ecommercebackend.payload.CategoryDTO;
 import org.example.ecommercebackend.payload.CategoryResponse;
 import org.example.ecommercebackend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
     @PostMapping("/api/public/categories")
-    public ResponseEntity<String> createCategory(@Valid @RequestBody Category category) {
-       categoryService.createCategory(category);
+    public ResponseEntity<String> createCategory(@Valid @RequestBody CategoryDTO categorydto) {
+       categoryService.createCategory(categorydto);
         return  new ResponseEntity<>("Category has been created",HttpStatus.CREATED);
     }
     @PutMapping("/api/public/categories/{categoryId}")
