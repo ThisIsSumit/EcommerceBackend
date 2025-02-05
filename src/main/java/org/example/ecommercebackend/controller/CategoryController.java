@@ -28,9 +28,10 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
     @PostMapping("/api/public/categories")
-    public ResponseEntity<String> createCategory(@Valid @RequestBody CategoryDTO categorydto) {
-       categoryService.createCategory(categorydto);
-        return  new ResponseEntity<>("Category has been created",HttpStatus.CREATED);
+    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categorydto) {
+
+       CategoryDTO savedCategoryDTO= categoryService.createCategory(categorydto);
+        return  new ResponseEntity<>(savedCategoryDTO,HttpStatus.CREATED);
     }
     @PutMapping("/api/public/categories/{categoryId}")
     public ResponseEntity<String> updateCategory(@Valid @RequestBody Category category, @PathVariable Long categoryId) {
