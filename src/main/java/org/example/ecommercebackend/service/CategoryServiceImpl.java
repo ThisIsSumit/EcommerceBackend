@@ -3,6 +3,7 @@ package org.example.ecommercebackend.service;
 import org.example.ecommercebackend.entities.Category;
 import org.example.ecommercebackend.exceptions.APIException;
 import org.example.ecommercebackend.exceptions.ResourceNotFoundException;
+import org.example.ecommercebackend.payload.CategoryResponse;
 import org.example.ecommercebackend.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class CategoryServiceImpl  implements CategoryService{
     @Autowired
     private CategoryRepository categoryRepository;
     @Override
-    public List<Category> getAllCategories()
+    public CategoryResponse getAllCategories()
     {
         List<Category> categories= categoryRepository.findAll();
         if(categories.isEmpty())
