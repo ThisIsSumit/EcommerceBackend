@@ -2,6 +2,7 @@ package org.example.ecommercebackend.controller;
 
 import jakarta.validation.Valid;
 import org.example.ecommercebackend.entities.Category;
+import org.example.ecommercebackend.payload.CategoryResponse;
 import org.example.ecommercebackend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class CategoryController {
 
    // @GetMapping("/api/public/categories")
     @RequestMapping(value = "/api/public/categories", method = RequestMethod.GET)
-    public ResponseEntity<List<Category>> getAllCategories() {
+    public ResponseEntity<CategoryResponse> getAllCategories() {
 
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
