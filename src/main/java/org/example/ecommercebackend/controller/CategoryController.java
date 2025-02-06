@@ -20,12 +20,14 @@ public class CategoryController {
     @Autowired
     private  CategoryService categoryService;
 
-
-   // @GetMapping("/api/public/categories")
+    // @GetMapping("/api/public/categories")
     @RequestMapping(value = "/api/public/categories", method = RequestMethod.GET)
-    public ResponseEntity<CategoryResponse> getAllCategories() {
+    public ResponseEntity<CategoryResponse> getAllCategories(
+            @RequestParam(name="pageNumber") Integer pageNumber,
+            @RequestParam(name="pageSize") Integer pageSize
+    ) {
 
-        return ResponseEntity.ok(categoryService.getAllCategories());
+        return ResponseEntity.ok(categoryService.getAllCategories(pageNumber, pageSize));
     }
     @PostMapping("/api/public/categories")
     public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categorydto) {
