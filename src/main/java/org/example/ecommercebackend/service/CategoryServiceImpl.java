@@ -30,7 +30,7 @@ public class CategoryServiceImpl  implements CategoryService{
         Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc")? Sort.by(sortBy).ascending(): Sort.by(sortBy).descending();
         //pageable is an interface that repersent the request
         //for a specific page of data from database query result
-        Pageable pageDetails = PageRequest.of(pageNumber, pageSize);
+        Pageable pageDetails = PageRequest.of(pageNumber, pageSize, sortByAndOrder);
         Page<Category> categoryPage = categoryRepository.findAll(pageDetails);
 
         List<Category> categories= categoryPage.getContent();
