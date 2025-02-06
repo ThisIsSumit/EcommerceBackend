@@ -21,14 +21,17 @@ public class CategoryController {
     @Autowired
     private  CategoryService categoryService;
 
-    // @GetMapping("/api/public/categories")
-    @RequestMapping(value = "/api/public/categories", method = RequestMethod.GET)
+
+    //@RequestMapping(value = "/api/public/categories", method = RequestMethod.GET)
+    @GetMapping("/api/public/categories")
     public ResponseEntity<CategoryResponse> getAllCategories(
-            @RequestParam(name="pageNumber", defaultValue = AppConstants.PAGE_NUMBER) Integer pageNumber,
-            @RequestParam(name="pageSize",defaultValue = AppConstants.PAGE_SIZE) Integer pageSize
+            @RequestParam(name="pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(name="pageSize",defaultValue = AppConstants.PAGE_SIZE,required = false) Integer pageSize,
+            @RequestParam(name="sortBy",defaultValue = AppConstants.SORT_CATEGORIES_BY, required = false) String sortBy,
+            @RequestParam(name="sortOrder",defaultValue = AppConstants.SORT_DIRECTION, required = false) String sortOrder
     ) {
 
-        return ResponseEntity.ok(categoryService.getAllCategories(pageNumber, pageSize));
+        return ResponseEntity.ok(categoryService.getAllCategories(pageNumber, pageSize,sortBy,sortOrder));
     }
     @PostMapping("/api/public/categories")
     public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categorydto) {

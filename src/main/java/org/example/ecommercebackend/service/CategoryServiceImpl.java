@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -24,8 +25,9 @@ public class CategoryServiceImpl  implements CategoryService{
     @Autowired
     private  ModelMapper modelMapper ;
     @Override
-    public CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize) throws APIException
+    public CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize, String sortBy , String sortOrder) throws APIException
     {
+        Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc")? Sort.by(sortBy).ascending(): Sort.by(sortBy).descending();
         //pageable is an interface that repersent the request
         //for a specific page of data from database query result
         Pageable pageDetails = PageRequest.of(pageNumber, pageSize);
