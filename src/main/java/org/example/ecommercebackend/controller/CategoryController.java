@@ -1,6 +1,7 @@
 package org.example.ecommercebackend.controller;
 
 import jakarta.validation.Valid;
+import org.example.ecommercebackend.config.AppConstants;
 import org.example.ecommercebackend.entities.Category;
 import org.example.ecommercebackend.payload.CategoryDTO;
 import org.example.ecommercebackend.payload.CategoryResponse;
@@ -23,8 +24,8 @@ public class CategoryController {
     // @GetMapping("/api/public/categories")
     @RequestMapping(value = "/api/public/categories", method = RequestMethod.GET)
     public ResponseEntity<CategoryResponse> getAllCategories(
-            @RequestParam(name="pageNumber") Integer pageNumber,
-            @RequestParam(name="pageSize") Integer pageSize
+            @RequestParam(name="pageNumber", defaultValue = AppConstants.PAGE_NUMBER) Integer pageNumber,
+            @RequestParam(name="pageSize",defaultValue = AppConstants.PAGE_SIZE) Integer pageSize
     ) {
 
         return ResponseEntity.ok(categoryService.getAllCategories(pageNumber, pageSize));
