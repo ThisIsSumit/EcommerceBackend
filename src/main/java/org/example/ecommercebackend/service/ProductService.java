@@ -9,4 +9,6 @@ public interface ProductService {
     ResponseEntity<ProductDTO> addProduct(Long categoryId, Product product);
 
     ProductResponse getAllProduct();
+
+    ProductResponse searchByCategory(Long categoryId);
 }
