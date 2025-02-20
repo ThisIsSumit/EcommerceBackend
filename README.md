@@ -1,1 +1,1 @@
-It is full stack java E-commerce project. 
+It is full stack java E-commerce project.
