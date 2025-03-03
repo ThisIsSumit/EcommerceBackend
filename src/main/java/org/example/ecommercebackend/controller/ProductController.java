@@ -5,6 +5,7 @@ import org.example.ecommercebackend.payload.ProductDTO;
 import org.example.ecommercebackend.payload.ProductResponse;
 import org.example.ecommercebackend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,4 +38,11 @@ public class ProductController {
     }
 
 
+
+    @GetMapping("/public/products/{keyword}/products")
+    public ResponseEntity<ProductResponse> getProductByKeyword(@PathVariable String keyword) {
+    ProductResponse productResponse=  productService.searchProductByKeyword(keyword);
+      return new ResponseEntity<>(productResponse, HttpStatus.OK);
+
+    }
 }
