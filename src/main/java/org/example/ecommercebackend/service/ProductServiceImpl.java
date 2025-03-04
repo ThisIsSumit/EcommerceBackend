@@ -123,7 +123,7 @@ public class ProductServiceImpl implements ProductService {
 
     private String uploadImage(String path, MultipartFile file) throws IOException {
         //get the file name of current file or original
-        String  originalFilename =  file.getName();
+        String  originalFilename =  file.getOriginalFilename();
 
 
         //Generate a unique file name
