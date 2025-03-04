@@ -132,7 +132,7 @@ public class ProductServiceImpl implements ProductService {
                 concat(originalFilename.
                         substring(originalFilename.lastIndexOf('.'))) ;
 
-       String filePath = path + File.pathSeparator + fileName;
+       String filePath = path + File.separator + fileName;
 
         //Check if path exists and create
         File folder= new File(path);
