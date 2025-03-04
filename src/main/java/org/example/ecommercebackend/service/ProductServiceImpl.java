@@ -11,8 +11,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -92,5 +98,54 @@ public class ProductServiceImpl implements ProductService {
             productRepository.delete(product);
 
         return modelMapper.map(product,ProductDTO.class);
+    }
+
+    @Override
+    public ProductDTO updateProductImage(Long productId, MultipartFile image) throws IOException {
+        //get the product from db
+        Product productFromDb=productRepository.findById(productId).
+                orElseThrow(()-> new ResourceNotFoundException("Product","productId",productId));
+
+        //upload image to server
+            //get the file name of uploaded image
+        String path= "images/";
+            String fileName=uploadImage(path,image);
+
+        //update the new file name in product
+        productFromDb.setImage(fileName);
+
+        productRepository.save(productFromDb);
+
+
+
+        return  modelMapper.map(productFromDb,ProductDTO.class);
+    }
+
+    private String uploadImage(String path, MultipartFile file) throws IOException {
+        //get the file name of current file or original
+        String  originalFilename =  file.getName();
+
+
+        //Generate a unique file name
+        String randomId = UUID.randomUUID().toString();
+        String fileName= randomId.
+                concat(originalFilename.
+                        substring(originalFilename.lastIndexOf('.'))) ;
+
+       String filePath = path + File.pathSeparator + fileName;
+
+        //Check if path exists and create
+        File folder= new File(path);
+        if(!folder.exists()){
+            folder.mkdir();
+        }
+        Files.copy(file.getInputStream(), Paths.get(filePath));
+        return fileName;
+
+
+        // Upload to server
+
+        //returning file name
+
     }
 }
