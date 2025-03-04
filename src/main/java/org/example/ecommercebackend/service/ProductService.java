@@ -6,7 +6,7 @@ import org.example.ecommercebackend.payload.ProductResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface ProductService {
-    ResponseEntity<ProductDTO> addProduct(Long categoryId, Product product);
+    ProductDTO addProduct(Long categoryId, ProductDTO productdto);
 
     ProductResponse getAllProduct();
 
@@ -14,5 +14,7 @@ public interface ProductService {
 
     ProductResponse searchProductByKeyword(String keyword);
 
-    ProductDTO updateProduct(Long productId, Product product);
+    ProductDTO updateProduct(Long productId, ProductDTO productdto);
+
+    ProductDTO deleteProduct(Long productId);
 }
