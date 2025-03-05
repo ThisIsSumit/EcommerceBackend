@@ -1,5 +1,6 @@
 package org.example.ecommercebackend.controller;
 
+import jakarta.validation.Valid;
 import org.example.ecommercebackend.entities.Product;
 import org.example.ecommercebackend.payload.ProductDTO;
 import org.example.ecommercebackend.payload.ProductResponse;
@@ -20,7 +21,7 @@ public class ProductController {
     private ProductService productService;
     @PostMapping("/admin/categories/{categoryId}/product")
     public ResponseEntity<ProductDTO> addProduct(
-            @RequestBody ProductDTO productdto,
+           @Valid @RequestBody ProductDTO productdto,
             @PathVariable Long categoryId) {
 
        ProductDTO savedProduct= productService.addProduct(categoryId,productdto);
@@ -50,7 +51,7 @@ public class ProductController {
 
     }
     @PutMapping("/admin/products/{productId}")
-    public ResponseEntity<ProductDTO> updateProduct(@RequestBody ProductDTO productdto, @PathVariable Long productId) {
+    public ResponseEntity<ProductDTO> updateProduct( @Valid @RequestBody ProductDTO productdto, @PathVariable Long productId) {
         ProductDTO updatedProduct = productService.updateProduct(productId,productdto);
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
 
