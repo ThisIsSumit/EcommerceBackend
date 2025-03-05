@@ -11,17 +11,15 @@ import org.example.ecommercebackend.repositories.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -66,8 +64,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse getAllProduct() {
-       List<Product> products= productRepository.findAll();
+    public ProductResponse getAllProduct(Integer pageNumber,
+                                         Integer pageSize,
+                                         String sortBy,
+                                         String sortOrder) {
+        Sort sortByAndOrder=sortOrder.equalsIgnoreCase("asc")
+                ?Sort.by(sortBy).ascending()
+                :Sort.by(sortBy).descending();
+        Pageable pageDetails= PageRequest.of(pageNumber-1,pageSize,sortByAndOrder);
+        Page<Product> pageProducts= productRepository.findAll(pageDetails);
+       List<Product> products= pageProducts.getContent();
+
        List<ProductDTO> productdtos= products.stream().map(p->modelMapper.map(p,ProductDTO.class)).toList();
        if(productdtos.isEmpty()) {
            throw new APIException("No products found");
@@ -75,6 +82,11 @@ public class ProductServiceImpl implements ProductService {
        }
        ProductResponse productResponse= new ProductResponse();
        productResponse.setContent(productdtos);
+       productResponse.setPageNumber(pageProducts.getNumber());
+       productResponse.setPageSize(pageProducts.getSize());
+       productResponse.setTotalPages(pageProducts.getTotalPages());
+       productResponse.setTotalElements(pageProducts.getTotalElements());
+       productResponse.setLastPage(pageProducts.isLast());
        return productResponse;
     }
 

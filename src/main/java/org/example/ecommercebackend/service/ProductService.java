@@ -1,9 +1,7 @@
 package org.example.ecommercebackend.service;
 
-import org.example.ecommercebackend.entities.Product;
 import org.example.ecommercebackend.payload.ProductDTO;
 import org.example.ecommercebackend.payload.ProductResponse;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -11,7 +9,7 @@ import java.io.IOException;
 public interface ProductService {
     ProductDTO addProduct(Long categoryId, ProductDTO productdto);
 
-    ProductResponse getAllProduct();
+    ProductResponse getAllProduct(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
 
     ProductResponse searchByCategory(Long categoryId);
 
