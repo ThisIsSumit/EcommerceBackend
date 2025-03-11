@@ -13,6 +13,7 @@ public class Role {
     @Column(name="role_id")
     private Integer roleId;
 
+    @ToString.Exclude
     @Enumerated(EnumType.STRING) // by default this  is saved as
     // enum  type but we want to save string
     @Column(length=20,name ="role_name" )
