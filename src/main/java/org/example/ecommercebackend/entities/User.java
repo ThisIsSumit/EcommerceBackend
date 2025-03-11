@@ -22,13 +22,16 @@ uniqueConstraints = {@UniqueConstraint(columnNames = "username"),
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
     @NotBlank
     @Size(max = 30)
+    @Column(name = "username")
     private String username;
 
     @NotBlank
     @Size(max = 120)
+    @Column(name="password")
     private String password;
 
     @NotBlank
