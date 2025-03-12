@@ -1,16 +1,20 @@
-package org.example.ecommercebackend.security.jwt;
+package org.example.ecommercebackend.security.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Getter
 @Setter
-public class LoginRequest {
+public class UserInfoResponse {
+    private Long id;
+    private String jwtToken;
     private String username;
-    private String password;
-
+    private List<String> roles;
 }

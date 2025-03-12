@@ -1,19 +1,19 @@
-package org.example.ecommercebackend.security.jwt;
+package org.example.ecommercebackend.security.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Getter
 @Setter
-public class LoginResponse {
-    private String jwtToken;
+public class LoginRequest {
+    @NotBlank
     private String username;
-    private List<String> roles;
+    @NotBlank
+    private String password;
+
 }
