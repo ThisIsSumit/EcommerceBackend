@@ -38,6 +38,8 @@ import java.util.stream.Collectors;
 public class AuthController {
     @Autowired
     private JwtUtils jwtUtils;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired

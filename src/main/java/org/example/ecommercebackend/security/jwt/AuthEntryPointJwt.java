@@ -24,7 +24,7 @@ public class AuthEntryPointJwt  implements AuthenticationEntryPoint {
                          AuthenticationException authException)
             throws IOException, ServletException {
         logger.error("Authentication Failed : {}",authException.getMessage());
-        System.out.println(authException);
+        logger.error("e: ", authException);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
                 "Authentication Failed");
