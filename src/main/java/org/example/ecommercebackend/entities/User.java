@@ -18,11 +18,13 @@ import java.util.Set;
 uniqueConstraints = {@UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email"),
         })
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long id;
+    private Long userId;
     @NotBlank
     @Size(max = 30)
     @Column(name = "username")
