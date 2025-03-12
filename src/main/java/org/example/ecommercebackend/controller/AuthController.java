@@ -72,7 +72,7 @@ public class AuthController {
         List<String> roles=userDetails.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority).collect(Collectors.toList());
-        UserInfoResponse response= new UserInfoResponse(userDetails.getId(), userDetails.getUsername(),jwtToken,roles);
+        UserInfoResponse response= new UserInfoResponse(userDetails.getId(),jwtToken, userDetails.getUsername(),roles);
         return ResponseEntity.ok(response);
 
     }
