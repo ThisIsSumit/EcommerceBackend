@@ -28,20 +28,22 @@ public class User {
     @NotBlank
     @Size(max = 30)
     @Column(name = "username")
-    private String username;
+    private String userName;
+    @NotBlank
+    @Size(max = 50)
+    @Email
+    @Column(name = "email")
+    private String email;
 
     @NotBlank
     @Size(max = 120)
     @Column(name="password")
     private String password;
 
-    @NotBlank
-    @Size(max = 50)
-    @Email
-    private String email;
 
-    public User(String username, String password, String email) {
-        this.username = username;
+
+    public User(String username, String email,String password) {
+        this.userName = username;
         this.password = password;
         this.email = email;
     }
