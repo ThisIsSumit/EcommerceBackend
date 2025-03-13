@@ -12,6 +12,8 @@ import org.example.ecommercebackend.security.request.SignupRequest;
 import org.example.ecommercebackend.security.response.MessageResponse;
 import org.example.ecommercebackend.security.response.UserInfoResponse;
 import org.example.ecommercebackend.security.services.UserDetailsImpl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,12 +70,17 @@ public class AuthController {
         }
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        String jwtToken= jwtUtils.generateTokenFromUsername(userDetails);
+       ResponseCookie jwtCookie= jwtUtils.generateJwtCookie(userDetails);
         List<String> roles=userDetails.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority).collect(Collectors.toList());
-        UserInfoResponse response= new UserInfoResponse(userDetails.getId(),jwtToken, userDetails.getUsername(),roles);
-        return ResponseEntity.ok(response);
+        UserInfoResponse response= new UserInfoResponse(userDetails.getId() , userDetails.getUsername(),roles);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.
+                        SET_COOKIE,
+                        jwtCookie
+                                .toString())
+                .body(response);
 
     }
 
