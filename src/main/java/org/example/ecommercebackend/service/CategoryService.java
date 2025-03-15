@@ -4,7 +4,7 @@ import org.example.ecommercebackend.entities.Category;
 import org.example.ecommercebackend.payload.CategoryDTO;
 import org.example.ecommercebackend.payload.CategoryResponse;
 
-import java.util.List;
+
 
 
 public interface CategoryService {
