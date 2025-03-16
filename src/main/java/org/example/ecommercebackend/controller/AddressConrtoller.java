@@ -43,4 +43,14 @@ return new ResponseEntity<>(savedAddressDTO,HttpStatus.CREATED);
         return new ResponseEntity<>(addressDTO,HttpStatus.OK);
 
     }
+
+
+    @GetMapping("/users/address")
+    public ResponseEntity<List<AddressDTO>> getUserAddress(
+             ) {
+        User user =authUtil.loggedInUser();
+        List<AddressDTO> addressDTO= addressService.getUserAddress(user);
+        return new ResponseEntity<>(addressDTO,HttpStatus.OK);
+
+    }
 }
