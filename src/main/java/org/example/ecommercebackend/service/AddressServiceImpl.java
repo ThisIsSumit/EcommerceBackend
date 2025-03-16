@@ -1,7 +1,9 @@
 package org.example.ecommercebackend.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.example.ecommercebackend.entities.Address;
 import org.example.ecommercebackend.entities.User;
+import org.example.ecommercebackend.exceptions.ResourceNotFoundException;
 import org.example.ecommercebackend.payload.AddressDTO;
 import org.example.ecommercebackend.repositories.AddressRepository;
 import org.modelmapper.ModelMapper;
@@ -36,5 +38,15 @@ public class AddressServiceImpl implements AddressService {
                 .map(addressDTO ->
                         modelMapper.map(addressDTO, AddressDTO.class))
                 .toList();
+    }
+
+    @Override
+    public AddressDTO getAddressById(Long addressId) {
+        Address address =addressRepository.findById(addressId).orElseThrow(()->
+                new ResourceNotFoundException("Address",
+                        "addressId",
+                        "Address not found")
+        );
+        return modelMapper.map(address, AddressDTO.class);
     }
 }

@@ -34,4 +34,13 @@ return new ResponseEntity<>(savedAddressDTO,HttpStatus.CREATED);
         return new ResponseEntity<>(allAddresses,HttpStatus.OK);
 
   }
+
+    @GetMapping("/address/{addressId}")
+    public ResponseEntity<AddressDTO> getAddressById(
+            @PathVariable Long addressId) {
+        User user =authUtil.loggedInUser();
+        AddressDTO addressDTO= addressService.getAddressById(addressId);
+        return new ResponseEntity<>(addressDTO,HttpStatus.OK);
+
+    }
 }
