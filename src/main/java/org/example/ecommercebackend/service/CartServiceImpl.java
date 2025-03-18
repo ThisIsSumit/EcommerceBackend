@@ -94,7 +94,7 @@ public class CartServiceImpl implements CartService{
     public List<CartDTO> getAllCarts() {
         List<Cart> carts = cartRepository.findAll();
 
-        if (carts.size() == 0) {
+        if (carts.isEmpty()) {
             throw new APIException("No cart exists");
         }
 

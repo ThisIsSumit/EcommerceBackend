@@ -31,7 +31,7 @@ public class CategoryController {
             @RequestParam(name="sortOrder",defaultValue = AppConstants.SORT_DIRECTION, required = false) String sortOrder
     ) {
 
-        return ResponseEntity.ok(categoryService.getAllCategories(pageNumber, pageSize,sortBy,sortOrder));
+        return ResponseEntity.ok(categoryService.getAllCategories(pageNumber-1, pageSize,sortBy,sortOrder));
     }
     @PostMapping("/api/public/categories")
     public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categorydto) {
