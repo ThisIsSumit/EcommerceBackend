@@ -13,13 +13,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class AddressConrtoller {
+public class AddressController {
     @Autowired
     private AddressService addressService;
     @Autowired
     AuthUtil authUtil;
 
-    @PostMapping("/adresses")
+    @PostMapping("/addresses")
 
     public ResponseEntity<AddressDTO> addAddress(@RequestParam AddressDTO addressDTO) {
         User user =authUtil.loggedInUser();
@@ -62,7 +62,7 @@ return new ResponseEntity<>(savedAddressDTO,HttpStatus.CREATED);
     }
 
     @DeleteMapping("/addresses/{addressId}")
-    public ResponseEntity<String> updateAddress(@PathVariable Long addressId){
+    public ResponseEntity<String> deleteAddress(@PathVariable Long addressId){
         String status = addressService.deleteAddress(addressId);
         return new ResponseEntity<>(status, HttpStatus.OK);
     }
