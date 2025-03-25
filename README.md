@@ -84,7 +84,6 @@ This is a full-fledged **Spring Boot-based E-Commerce Application** built with s
 - **Spring Security + JWT** – Authentication & authorization
 - **Spring Data JPA** – ORM for data access
 - **PostgreSQL** – Relational database
-- **Swagger** – API documentation
 
 ---
 
