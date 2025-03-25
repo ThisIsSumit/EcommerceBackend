@@ -1,6 +1,3 @@
-Sure! Here's a rewritten version of your GitHub README for your Spring Boot E-Commerce Application with PostgreSQL and all the detailed endpoints structured cleanly:
-
----
 
 # 🛒 E-Commerce Application (Spring Boot + PostgreSQL)
 
@@ -91,30 +88,6 @@ This is a full-fledged **Spring Boot-based E-Commerce Application** built with s
 
 ---
 
-## 📄 Getting Started
-
-1. **Clone the repo**
-   ```bash
-   git clone https://github.com/yourusername/ecommerce-springboot.git
-   cd ecommerce-springboot
-   ```
-
-2. **Configure PostgreSQL in `application.properties`**
-   ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/your_db
-   spring.datasource.username=your_username
-   spring.datasource.password=your_password
-   ```
-
-3. **Run the application**
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-
-4. **Access Swagger UI**
-   ```
-   http://localhost:8080/swagger-ui/index.html
-   ```
 
 ---
 
@@ -124,4 +97,3 @@ Feel free to fork the repository, submit pull requests, or open issues. Any feed
 
 ---
 
-Let me know if you want a version with badges (e.g., Java, PostgreSQL, Spring Boot, License) or a markdown file to directly upload to GitHub.
