@@ -1,5 +1,5 @@
 
-# 🛒 E-Commerce Application (Spring Boot + PostgreSQL)
+# 🛒 Spring Boot E-Commerce Application 
 
 ## Overview
 
